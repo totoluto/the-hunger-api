@@ -54,6 +54,6 @@ public class RestController {
 
     @PutMapping("/persons/{id}")
     public void updatePerson(@PathVariable int id, @RequestBody Person change){
-        personRepository.updatePerson(id, change.getName(), change.getNationality(), change.getFavoriteweapon(), change.getBirthdate(), change.getKd(), change.getSector());
+        personRepository.updatePerson(id, change.getName(), change.getNationality(), change.getFavoriteweapon(), change.getBirthdate(), change.getKd(), change.getSector(), change.isAlive());
     }
 }

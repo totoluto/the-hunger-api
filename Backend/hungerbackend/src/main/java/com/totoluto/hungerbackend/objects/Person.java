@@ -20,4 +20,5 @@ public class Person {
     private Date birthdate;
     private float kd;
     private int sector;
+    private boolean alive;
 }
