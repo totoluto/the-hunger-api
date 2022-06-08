@@ -5,8 +5,6 @@ services:
     image: mariadb:latest
     ports:
       - 3306:3306
-    volumes:
-      - ./db_data:/var/lib/mysql
     restart: on-failure
     environment:
       MYSQL_ROOT_PASSWORD: 123456
