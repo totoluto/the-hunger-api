@@ -5,6 +5,47 @@ import Card from "react-bootstrap/Card"
 import {Container, Row, Col} from "react-bootstrap";
 import {useEffect, useState} from "react";
 
+function Delete(){
+    const [persons, setPersons] = useState([])
+    useEffect(() => {
+        fetch("http://localhost:8080/persons")
+            .then((response) => response.json())
+            .then((data) => setPersons(data))
+    }, [])
+    return (
+
+        <Row>
+
+            {persons.map((person, idx) =>
+                <Col xs={4}>
+                    <Card className={'card'}>
+                        <Card.Img variant="top" src={'/img/'+(idx+1)+'.jpg'}/>
+                        <Card.Body>
+                            <Card.Title>
+                                {person.name}
+                            </Card.Title>
+                            <Card.Text>
+                                Nationality: {person.nationality}
+                                <br/>
+                                Favorite Weapon: {person.favoriteweapon}
+                                <br/>
+                                Birthday: {person.birthdate}
+                                <br/>
+                                Kills: {person.kd}
+                                <br/>
+                                Sector: {person.sector}
+                                <br/>
+                                Status: {person.alive ? "Alive" : "Dead"}
+                            </Card.Text>
+                            <Button variant="primary">Delete</Button>
+                        </Card.Body>
+                    </Card>
+                </Col>)}
+
+        </Row>
+    )
+}
+
 function Persons() {
     const [persons, setPersons] = useState([])
     useEffect(() => {
@@ -55,7 +96,7 @@ function App() {
                         <ul className="App-ul-nav">
                             <li className="App-li-nav"><Link to="/" className="navlink">Hungery Games Index
                                 オククダサ斎</Link></li>
-                            <li className="App-li-nav"><Link to="/tributes" className="navlink">Tributes</Link></li>
+                            <li className="App-li-nav"><Link to="/tributes" className="navlink">Delete Tributes</Link></li>
                             <li className="App-li-nav"><Link to="/teams" className="navlink">Teams</Link></li>
                             <li className="App-li-nav"><Link to="/rankings" className="navlink">Rankings</Link></li>
                             <li className="App-li-nav"><Link to="/contact" className="navlink">Contact</Link></li>
@@ -71,7 +112,7 @@ function App() {
                 <Container>
                     <Routes>
                         <Route path="/" element={<Persons/>}/>
-                        <Route path="/tributes" element={<Persons/>}/>
+                        <Route path="/tributes" element={<Delete/>}/>
                         <Route path="/teams" element={<Persons/>}/>
                         <Route path="/rankings" element={<Persons/>}/>
                         <Route path="/contact" element={<Persons/>}/>
