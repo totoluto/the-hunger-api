@@ -3,6 +3,7 @@ import {BrowserRouter, Routes, Route, Link} from "react-router-dom";
 import './App.css';
 import Alert from "react-bootstrap/Alert";
 import Card from "react-bootstrap/Card"
+import {Container, Row, Col} from "react-bootstrap";
 import {useEffect, useState} from "react";
 
 function Persons() {
@@ -13,27 +14,31 @@ function Persons() {
             .then((data) => setPersons(data))
     }, [])
     return (
-        <>
-            <h1> Haha Hamburger Lady </h1>
-            {persons.map(person =>
-                <Card style={{width: '18rem'}}>
-                    <Card.Img variant="top" src={"/img/"+person.id+".jpg"}/>
-                    <Card.Body>
-                        <Card.Title>
-                            {person.name}
-                        </Card.Title>
-                        <Card.Text>
-                            {
-                                person.nationality +
-                                person.favoriteweapon +
-                                person.birthdate +
-                                person.kd +
-                                person.sector +
-                                person.alive}
-                        </Card.Text>
-                    </Card.Body>
-                </Card>)}
-        </>
+
+            <Row>
+
+                {persons.map(person =>
+                    <Col xs={4}>
+                        <Card className={'card'}>
+                            <Card.Img variant="top" src={"/img/" + person.id + ".jpg"}/>
+                            <Card.Body>
+                                <Card.Title>
+                                    {person.name}
+                                </Card.Title>
+                                <Card.Text>
+                                    {
+                                        person.nationality +
+                                        person.favoriteweapon +
+                                        person.birthdate +
+                                        person.kd +
+                                        person.sector +
+                                        person.alive}
+                                </Card.Text>
+                            </Card.Body>
+                        </Card>
+                    </Col>)}
+
+            </Row>
     )
 }
 
@@ -60,16 +65,18 @@ function App() {
                         </ul>
                     </nav>
                 </header>
-                <Routes>
-                    <Route path="/" element={<Persons/>}/>
-                    <Route path="/tributes" element={<Persons/>}/>
-                    <Route path="/teams" element={<Persons/>}/>
-                    <Route path="/rankings" element={<Persons/>}/>
-                    <Route path="/contact" element={<Persons/>}/>
-                    <Route path="*" element={
-                        <Alert variant={'danger'}>There's nothing here!</Alert>
-                    }/>
-                </Routes>
+                <Container>
+                    <Routes>
+                        <Route path="/" element={<Persons/>}/>
+                        <Route path="/tributes" element={<Persons/>}/>
+                        <Route path="/teams" element={<Persons/>}/>
+                        <Route path="/rankings" element={<Persons/>}/>
+                        <Route path="/contact" element={<Persons/>}/>
+                        <Route path="*" element={
+                            <Alert variant={'danger'}>There's nothing here!</Alert>
+                        }/>
+                    </Routes>
+                </Container>
             </BrowserRouter>
         </div>
     );

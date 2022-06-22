@@ -48,12 +48,14 @@ a:active {
   justify-content: space-around;
   font-size: calc(10px + 2vmin);
   color: white;
+  margin-bottom: 20px;
 }
 
 .App-nav {
   height: 100%;
   width: 100%;
   display: flex;
+  margin-top: 20px;
 }
 
 .App-ul-nav {
@@ -81,4 +83,8 @@ a:active {
 }
 ul{
   list-style-type: none ;
+}
+
+.card{
+  margin-bottom: 10px;
 }
