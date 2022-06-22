@@ -2,7 +2,7 @@ import {BrowserRouter, Routes, Route, Link} from "react-router-dom";
 import './App.css';
 import Alert from "react-bootstrap/Alert";
 import Card from "react-bootstrap/Card"
-import {Container, Row, Col} from "react-bootstrap";
+import {Container, Row, Col, Button} from "react-bootstrap";
 import {useEffect, useState} from "react";
 
 function Delete(){
@@ -12,6 +12,13 @@ function Delete(){
             .then((response) => response.json())
             .then((data) => setPersons(data))
     }, [])
+
+    function deletePerson(id){
+        fetch('http://localhost:8080/persons/'+id, { method: 'DELETE' })
+            .then(() => {
+                setPersons(persons.filter(p => p.id !== id))
+            });
+    }
     return (
 
         <Row>
@@ -19,7 +26,7 @@ function Delete(){
             {persons.map((person, idx) =>
                 <Col xs={4}>
                     <Card className={'card'}>
-                        <Card.Img variant="top" src={'/img/'+(idx+1)+'.jpg'}/>
+                        <Card.Img variant="top" src={'/img/'+(person.id)+'.jpg'}/>
                         <Card.Body>
                             <Card.Title>
                                 {person.name}
@@ -37,7 +44,7 @@ function Delete(){
                                 <br/>
                                 Status: {person.alive ? "Alive" : "Dead"}
                             </Card.Text>
-                            <Button variant="primary">Delete</Button>
+                            <Button variant="danger" onClick={()=>deletePerson(person.id)}>Delete</Button>
                         </Card.Body>
                     </Card>
                 </Col>)}
@@ -60,7 +67,7 @@ function Persons() {
                 {persons.map((person, idx) =>
                     <Col xs={4}>
                         <Card className={'card'}>
-                            <Card.Img variant="top" src={'/img/'+(idx+1)+'.jpg'}/>
+                            <Card.Img variant="top" src={'/img/'+(person.id)+'.jpg'}/>
                             <Card.Body>
                                 <Card.Title>
                                     {person.name}
