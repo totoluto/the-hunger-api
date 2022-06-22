@@ -4,12 +4,28 @@ html {
   margin: 0;
   padding: 0;
 }
+body{
+  display: flex;
+  flex-direction: column;
+}
 .App {
   text-align: center;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   height: 100%;
   width: 100%;
+}
+a:link{
+  color: azure;
+  text-decoration: none;
+}
+a:visited{
+  color: azure;
+  text-decoration: none;
+}
+a:active {
+  color: azure;
+  text-decoration: none;
 }
 
 .App-logo {
