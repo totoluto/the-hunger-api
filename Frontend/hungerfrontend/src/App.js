@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import {BrowserRouter, Routes, Route, Link} from "react-router-dom";
 import './App.css';
 import Alert from "react-bootstrap/Alert";
@@ -17,22 +16,26 @@ function Persons() {
 
             <Row>
 
-                {persons.map(person =>
+                {persons.map((person, idx) =>
                     <Col xs={4}>
                         <Card className={'card'}>
-                            <Card.Img variant="top" src={"/img/" + person.id + ".jpg"}/>
+                            <Card.Img variant="top" src={'/img/'+(idx+1)+'.jpg'}/>
                             <Card.Body>
                                 <Card.Title>
                                     {person.name}
                                 </Card.Title>
                                 <Card.Text>
-                                    {
-                                        person.nationality +
-                                        person.favoriteweapon +
-                                        person.birthdate +
-                                        person.kd +
-                                        person.sector +
-                                        person.alive}
+                                    Nationality: {person.nationality}
+                                    <br/>
+                                    Favorite Weapon: {person.favoriteweapon}
+                                    <br/>
+                                    Birthday: {person.birthdate}
+                                    <br/>
+                                    Kills: {person.kd}
+                                    <br/>
+                                    Sector: {person.sector}
+                                    <br/>
+                                    Status: {person.alive ? "Alive" : "Dead"}
                                 </Card.Text>
                             </Card.Body>
                         </Card>
