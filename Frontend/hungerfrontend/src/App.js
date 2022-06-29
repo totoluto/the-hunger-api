@@ -68,8 +68,16 @@ function Update() {
                 setPersons(persons.filter(p => p.id !== id))
             });
     }
-    return (
+}
 
+function Post(){
+    const [persons, setPersons] = useState([])
+    useEffect(() => {
+        fetch("http://localhost:8080/persons")
+            .then((response) => response.json())
+            .then((data) => console.log(data))
+    }, [])
+    return (
         <Row>
 
             {persons.map((person, idx) =>
@@ -93,16 +101,25 @@ function Update() {
                                 <br/>
                                 Status: {person.alive ? "Alive" : "Dead"}
                             </Card.Text>
-                            <Button variant="danger" onClick={()=>updatePerson(person.id)}>Update</Button>
                         </Card.Body>
                     </Card>
                 </Col>)}
-
+                <Col>
+                    <form>
+                        <input type="Text"/>
+                        <input type="Text"/>
+                        <input type="Text"/>
+                        <input type="date" value="2022-06-06"/>
+                        <input type="number"/>
+                        <input type="number"/>
+                        <input type="radio" id="Alive" name="status" value="Alive"/>
+                        <input type="radio" id="Dead" name="status" value="Dead"/>
+                        <input type="submit" value="Update"/>
+                    </form>
+                </Col>
         </Row>
     )
-}
 
-function Post(){
 }
 
 function Get(){
