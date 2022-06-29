@@ -53,6 +53,53 @@ function Delete(){
     )
 }
 
+function Update() {
+    const [persons, setPersons] = useState([])
+    useEffect(() => {
+        fetch("http://localhost:8080/persons")
+            .then((response) => response.json())
+            .then((data) => setPersons(data))
+    }, [])
+    function updatePerson(id){
+        fetch('http://localhost:8080/persons/'+id, { method: 'PUT' })
+            .then(() => {
+                setPersons(persons.filter(p => p.id !== id))
+            });
+    }
+    return (
+
+        <Row>
+
+            {persons.map((person, idx) =>
+                <Col xs={4}>
+                    <Card className={'card'}>
+                        <Card.Img variant="top" src={'/img/'+(person.id)+'.jpg'}/>
+                        <Card.Body>
+                            <Card.Title>
+                                {person.name}
+                            </Card.Title>
+                            <Card.Text>
+                                Nationality: {person.nationality}
+                                <br/>
+                                Favorite Weapon: {person.favoriteweapon}
+                                <br/>
+                                Birthday: {person.birthdate}
+                                <br/>
+                                Kills: {person.kd}
+                                <br/>
+                                Sector: {person.sector}
+                                <br/>
+                                Status: {person.alive ? "Alive" : "Dead"}
+                            </Card.Text>
+                            <Button variant="danger" onClick={()=>updatePerson(person.id)}>Update</Button>
+                        </Card.Body>
+                    </Card>
+                </Col>)}
+
+        </Row>
+    )
+}
+
 function Persons() {
     const [persons, setPersons] = useState([])
     useEffect(() => {
@@ -104,7 +151,7 @@ function App() {
                             <li className="App-li-nav"><Link to="/" className="navlink">Hungery Games Index
                                 オククダサ斎</Link></li>
                             <li className="App-li-nav"><Link to="/tributes" className="navlink">Delete Tributes</Link></li>
-                            <li className="App-li-nav"><Link to="/teams" className="navlink">Teams</Link></li>
+                            <li className="App-li-nav"><Link to="/teams" className="navlink">Update</Link></li>
                             <li className="App-li-nav"><Link to="/rankings" className="navlink">Rankings</Link></li>
                             <li className="App-li-nav"><Link to="/contact" className="navlink">Contact</Link></li>
                             <li className="App-li-nav">
@@ -120,7 +167,7 @@ function App() {
                     <Routes>
                         <Route path="/" element={<Persons/>}/>
                         <Route path="/tributes" element={<Delete/>}/>
-                        <Route path="/teams" element={<Persons/>}/>
+                        <Route path="/teams" element={<Update/>}/>
                         <Route path="/rankings" element={<Persons/>}/>
                         <Route path="/contact" element={<Persons/>}/>
                         <Route path="*" element={
