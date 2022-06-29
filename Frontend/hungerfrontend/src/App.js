@@ -55,7 +55,7 @@ function Delete(){
     )
 }
 
-function Update() {
+function Post() {
     const [persons, setPersons] = useState([])
     useEffect(() => {
         fetch("http://localhost:8080/persons")
@@ -70,12 +70,12 @@ function Update() {
     }
 }
 
-function Post(){
+function Update(){
     const [persons, setPersons] = useState([])
     useEffect(() => {
         fetch("http://localhost:8080/persons")
             .then((response) => response.json())
-            .then((data) => console.log(data))
+            .then((data) => setPersons(data))
     }, [])
     return (
         <Row>
