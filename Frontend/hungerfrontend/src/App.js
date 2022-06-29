@@ -146,7 +146,7 @@ function Update(){
                                     <input type="number"/>
                                     <input type="radio" id="Alive" name="status" value="Alive"/>
                                     <input type="radio" id="Dead" name="status" value="Dead"/>
-                                    <input type="submit" value="Update" onClick={}/>
+                                    <input type="submit" value="Update"/>
                                 </form>
 
                             </Card.Text>
