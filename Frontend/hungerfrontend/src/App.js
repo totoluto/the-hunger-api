@@ -100,23 +100,22 @@ function Update(){
                                 Sector: {person.sector}
                                 <br/>
                                 Status: {person.alive ? "Alive" : "Dead"}
+                                <form>
+                                    <input type="Text"/>
+                                    <input type="Text"/>
+                                    <input type="Text"/>
+                                    <input type="date" value="2022-06-06"/>
+                                    <input type="number"/>
+                                    <input type="number"/>
+                                    <input type="radio" id="Alive" name="status" value="Alive"/>
+                                    <input type="radio" id="Dead" name="status" value="Dead"/>
+                                    <input type="submit" value="Update"/>
+                                </form>
+
                             </Card.Text>
                         </Card.Body>
                     </Card>
                 </Col>)}
-                <Col>
-                    <form>
-                        <input type="Text"/>
-                        <input type="Text"/>
-                        <input type="Text"/>
-                        <input type="date" value="2022-06-06"/>
-                        <input type="number"/>
-                        <input type="number"/>
-                        <input type="radio" id="Alive" name="status" value="Alive"/>
-                        <input type="radio" id="Dead" name="status" value="Dead"/>
-                        <input type="submit" value="Update"/>
-                    </form>
-                </Col>
         </Row>
     )
 
