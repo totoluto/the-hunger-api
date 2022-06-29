@@ -5,6 +5,8 @@ import Card from "react-bootstrap/Card"
 import {Container, Row, Col, Button} from "react-bootstrap";
 import {useEffect, useState} from "react";
 
+
+
 function Delete(){
     const [persons, setPersons] = useState([])
     useEffect(() => {
@@ -100,6 +102,12 @@ function Update() {
     )
 }
 
+function Post(){
+}
+
+function Get(){
+
+}
 function Persons() {
     const [persons, setPersons] = useState([])
     useEffect(() => {
@@ -150,10 +158,10 @@ function App() {
                         <ul className="App-ul-nav">
                             <li className="App-li-nav"><Link to="/" className="navlink">Hungery Games Index
                                 オククダサ斎</Link></li>
-                            <li className="App-li-nav"><Link to="/tributes" className="navlink">Delete Tributes</Link></li>
+                            <li className="App-li-nav"><Link to="/tributes" className="navlink">Delete</Link></li>
                             <li className="App-li-nav"><Link to="/teams" className="navlink">Update</Link></li>
-                            <li className="App-li-nav"><Link to="/rankings" className="navlink">Rankings</Link></li>
-                            <li className="App-li-nav"><Link to="/contact" className="navlink">Contact</Link></li>
+                            <li className="App-li-nav"><Link to="/rankings" className="navlink">Add</Link></li>
+                            <li className="App-li-nav"><Link to="/contact" className="navlink">Get </Link></li>
                             <li className="App-li-nav">
                                 <label for="search">Search &ensp;</label>
                                 <input id="search" type="text" onChange={event => {
@@ -168,8 +176,8 @@ function App() {
                         <Route path="/" element={<Persons/>}/>
                         <Route path="/tributes" element={<Delete/>}/>
                         <Route path="/teams" element={<Update/>}/>
-                        <Route path="/rankings" element={<Persons/>}/>
-                        <Route path="/contact" element={<Persons/>}/>
+                        <Route path="/rankings" element={<Get/>}/>
+                        <Route path="/contact" element={<Post/>}/>
                         <Route path="*" element={
                             <Alert variant={'danger'}>There's nothing here!</Alert>
                         }/>
