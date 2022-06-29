@@ -25,7 +25,7 @@ function Delete(){
 
         <Row>
 
-            {persons.map((person, idx) =>
+            {persons.map((person) =>
                 <Col xs={4}>
                     <Card className={'card'}>
                         <Card.Img variant="top" src={'/img/'+(person.id)+'.jpg'}/>
@@ -57,17 +57,52 @@ function Delete(){
 
 function Post() {
     const [persons, setPersons] = useState([])
+    const [newName, setNewName] = useState("")
+    const [newNationality, setNewNationality] = useState("")
+    const [newWeapon, setNewWeapon] = useState("")
+    const [newBirthday, setNewBirthday] = useState("")
+    const [newKD, setNewKD] = useState(0.1)
+    const [newSector, setNewSector] = useState(0)
+    const [newStatus, setNewStatus] = useState(true)
+    const ids = persons.map(object => {
+        return object.id;
+    });
     useEffect(() => {
-        fetch("http://localhost:8080/persons")
+        fetch('http://localhost:8080/persons',
+            {method: 'POST', body: {
+                    "id": Math.max(...ids)+1 ,
+                    "name": newName ,
+                    "nationality": newNationality,
+                    "favoriteweapon": newWeapon,
+                    "birthdate": newBirthday,
+                    "kd": newKD,
+                    "sector": newSector,
+                    "alive": newStatus
+            }})
             .then((response) => response.json())
-            .then((data) => setPersons(data))
     }, [])
-    function updatePerson(id){
-        fetch('http://localhost:8080/persons/'+id, { method: 'PUT' })
-            .then(() => {
-                setPersons(persons.filter(p => p.id !== id))
-            });
-    }
+    return(
+        <form onSubmit={Post}>
+            <label for="name">New Tribute Name</label>
+            <input type="Text" id="name" onSubmit={()=> setNewName(e.target.value)}/>
+            <label for="nationality">New Tributes nationality</label>
+            <input type="Text" id="nationality" onSubmit={()=> setNewNationality(e.target.value)}/>
+            <label for="weapon">New Tributes Weapon</label>
+            <input type="Text" id="weapon" onSubmit={()=> setNewWeapon(e.target.value)}/>
+            <label for="birthday">New Tributes birthday</label>
+            <input type="date" value="2022-06-06" id="birthday" onSubmit={()=> setNewBirthday(e.target.value)}/>
+            <label for="kd">New Tributes K/D</label>
+            <input type="number" id="kd" onSubmit={()=> setNewKD(e.target.value)}/>
+            <label for="sector">New Tributes Sector</label>
+            <input type="number" id="sector" onSubmit={()=> setNewSector(e.target.value)}/>
+            <label> is new tribute Alive?</label>
+            <div onSubmit={()=>setNewStatus(e.target.value)}>
+                <input type="radio" id="true" name="status" value="Alive"/>
+                <input type="radio" id="false" name="status" value="Dead"/>
+                <input type="submit" value="Update"/>
+            </div>
+        </form>
+    )
 }
 
 function Update(){
@@ -75,8 +110,10 @@ function Update(){
     useEffect(() => {
         fetch("http://localhost:8080/persons")
             .then((response) => response.json())
-            .then((data) => setPersons(data))
     }, [])
+    function UpdatePersons(){
+
+    }
     return (
         <Row>
 
@@ -109,7 +146,7 @@ function Update(){
                                     <input type="number"/>
                                     <input type="radio" id="Alive" name="status" value="Alive"/>
                                     <input type="radio" id="Dead" name="status" value="Dead"/>
-                                    <input type="submit" value="Update"/>
+                                    <input type="submit" value="Update" onClick={}/>
                                 </form>
 
                             </Card.Text>
