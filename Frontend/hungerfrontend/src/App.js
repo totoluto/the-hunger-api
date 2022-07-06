@@ -67,18 +67,19 @@ function Post() {
     const ids = persons.map(object => {
         return object.id;
     });
-    function upd(){
+
+    function post(){
         fetch('http://localhost:8080/persons',
-            {method: 'POST', body: {
+            {method: 'POST', body: JSON.stringify({
                     "id": Math.max(...ids)+1 ,
-                    "name": newName ,
+                    "name": newName,
                     "nationality": newNationality,
                     "favoriteweapon": newWeapon,
                     "birthdate": newBirthday,
                     "kd": newKD,
                     "sector": newSector,
                     "alive": newStatus
-                }})
+                })})
             .then((response) => response.json())
     }
     return(
