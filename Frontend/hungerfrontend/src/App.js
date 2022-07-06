@@ -87,19 +87,19 @@ function Post() {
     return(
         <form onSubmit={post}>
             <label for="name">New Tribute Name</label>
-            <input type="Text" id="name" onSubmit={()=> setNewName(this.target.value)}/><br/>
+            <input type="Text" id="name" onChange={(e)=> setNewName(e.target.value)}/><br/>
             <label for="nationality">New Tributes nationality</label>
-            <input type="Text" id="nationality" onSubmit={()=> setNewNationality(this.target.value)}/><br/>
+            <input type="Text" id="nationality" onChange={(e)=> setNewNationality(e.target.value)}/><br/>
             <label for="weapon">New Tributes Weapon</label>
-            <input type="Text" id="weapon" onSubmit={()=> setNewWeapon(this.target.value)}/><br/>
+            <input type="Text" id="weapon" onChange={(e)=> setNewWeapon(e.target.value)}/><br/>
             <label for="birthday">New Tributes birthday</label>
-            <input type="date" value="2022-06-06" id="birthday" onSubmit={()=> setNewBirthday(this.target.value)}/><br/>
+            <input type="date" value="2022-06-06" id="birthday" onChange={(e)=> setNewBirthday(e.target.value)}/><br/>
             <label for="kd">New Tributes K/D</label>
-            <input type="number" id="kd" onSubmit={()=> setNewKD(this.target.value)}/><br/>
+            <input type="number" id="kd" onChange={(e)=> setNewKD(e.target.value)}/><br/>
             <label for="sector">New Tributes Sector</label>
-            <input type="number" id="sector" onSubmit={()=> setNewSector(this.target.value)}/><br/>
+            <input type="number" id="sector" onChange={(e)=> setNewSector(e.target.value)}/><br/>
             <label> is new tribute Alive?</label>
-            <div onSubmit={()=>setNewStatus(this.target.value)}>
+            <div onChange={(e)=>setNewStatus(e.target.value)}>
                 <label>Alive</label>
                 <input type="radio" id="true" name="status" value="Alive"/>
                 <label>Dead</label>
