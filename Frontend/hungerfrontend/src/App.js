@@ -83,7 +83,7 @@ function Post() {
             .then((response) => response.json())
     }
     return(
-        <form onSubmit={upd}>
+        <form onSubmit={post}>
             <label for="name">New Tribute Name</label>
             <input type="Text" id="name" onSubmit={()=> setNewName(this.target.value)}/><br/>
             <label for="nationality">New Tributes nationality</label>
