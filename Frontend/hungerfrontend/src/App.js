@@ -79,7 +79,10 @@ function Post() {
                     "kd": newKD,
                     "sector": newSector,
                     "alive": newStatus
-                })})
+                }), headers: {
+                    'Content-Type': 'application/json'
+                    // 'Content-Type': 'application/x-www-form-urlencoded',
+                }})
             .then((response) => response.json())
     }
     return(
@@ -106,59 +109,6 @@ function Post() {
             </div>
         </form>
     )
-}
-
-function Update(){
-    const [persons, setPersons] = useState([])
-    useEffect(() => {
-        fetch("http://localhost:8080/persons")
-            .then((response) => response.json())
-    }, [])
-    function UpdatePersons(){
-
-    }
-    return (
-        <Row>
-
-            {persons.map((person, idx) =>
-                <Col xs={4}>
-                    <Card className={'card'}>
-                        <Card.Img variant="top" src={'/img/'+(person.id)+'.jpg'}/>
-                        <Card.Body>
-                            <Card.Title>
-                                {person.name}
-                            </Card.Title>
-                            <Card.Text>
-                                Nationality: {person.nationality}
-                                <br/>
-                                Favorite Weapon: {person.favoriteweapon}
-                                <br/>
-                                Birthday: {person.birthdate}
-                                <br/>
-                                Kills: {person.kd}
-                                <br/>
-                                Sector: {person.sector}
-                                <br/>
-                                Status: {person.alive ? "Alive" : "Dead"}
-                                <form>
-                                    <input type="Text"/>
-                                    <input type="Text"/>
-                                    <input type="Text"/>
-                                    <input type="date" value="2022-06-06"/>
-                                    <input type="number"/>
-                                    <input type="number"/>
-                                    <input type="radio" id="Alive" name="status" value="Alive"/>
-                                    <input type="radio" id="Dead" name="status" value="Dead"/>
-                                    <input type="submit" value="Update"/>
-                                </form>
-
-                            </Card.Text>
-                        </Card.Body>
-                    </Card>
-                </Col>)}
-        </Row>
-    )
-
 }
 
 function Persons() {
