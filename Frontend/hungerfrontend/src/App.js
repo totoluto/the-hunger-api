@@ -84,21 +84,23 @@ function Post() {
     return(
         <form onSubmit={upd}>
             <label for="name">New Tribute Name</label>
-            <input type="Text" id="name" onSubmit={()=> setNewName(this.target.value)}/>
+            <input type="Text" id="name" onSubmit={()=> setNewName(this.target.value)}/><br/>
             <label for="nationality">New Tributes nationality</label>
-            <input type="Text" id="nationality" onSubmit={()=> setNewNationality(this.target.value)}/>
+            <input type="Text" id="nationality" onSubmit={()=> setNewNationality(this.target.value)}/><br/>
             <label for="weapon">New Tributes Weapon</label>
-            <input type="Text" id="weapon" onSubmit={()=> setNewWeapon(this.target.value)}/>
+            <input type="Text" id="weapon" onSubmit={()=> setNewWeapon(this.target.value)}/><br/>
             <label for="birthday">New Tributes birthday</label>
-            <input type="date" value="2022-06-06" id="birthday" onSubmit={()=> setNewBirthday(this.target.value)}/>
+            <input type="date" value="2022-06-06" id="birthday" onSubmit={()=> setNewBirthday(this.target.value)}/><br/>
             <label for="kd">New Tributes K/D</label>
-            <input type="number" id="kd" onSubmit={()=> setNewKD(this.target.value)}/>
+            <input type="number" id="kd" onSubmit={()=> setNewKD(this.target.value)}/><br/>
             <label for="sector">New Tributes Sector</label>
-            <input type="number" id="sector" onSubmit={()=> setNewSector(this.target.value)}/>
+            <input type="number" id="sector" onSubmit={()=> setNewSector(this.target.value)}/><br/>
             <label> is new tribute Alive?</label>
             <div onSubmit={()=>setNewStatus(this.target.value)}>
+                <label>Alive</label>
                 <input type="radio" id="true" name="status" value="Alive"/>
-                <input type="radio" id="false" name="status" value="Dead"/>
+                <label>Dead</label>
+                <input type="radio" id="false" name="status" value="Dead"/><br/>
                 <input type="submit" value="Update"/>
             </div>
         </form>
