@@ -81,7 +81,6 @@ function Post() {
                     "alive": newStatus
                 }), headers: {
                     'Content-Type': 'application/json'
-                    // 'Content-Type': 'application/x-www-form-urlencoded',
                 }})
             .then((response) => response.json())
     }
