@@ -176,7 +176,6 @@ function App() {
                     <Routes>
                         <Route path="/" element={<Persons/>}/>
                         <Route path="/tributes" element={<Delete/>}/>
-                        <Route path="/teams" element={}/>
                         <Route path="/rankings" element={<Post/>}/>
                         <Route path="*" element={
                             <Alert variant={'danger'}>There's nothing here!</Alert>
