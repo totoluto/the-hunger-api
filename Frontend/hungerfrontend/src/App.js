@@ -67,7 +67,7 @@ function Post() {
     const ids = persons.map(object => {
         return object.id;
     });
-    useEffect(() => {
+    function upd(){
         fetch('http://localhost:8080/persons',
             {method: 'POST', body: {
                     "id": Math.max(...ids)+1 ,
@@ -78,11 +78,11 @@ function Post() {
                     "kd": newKD,
                     "sector": newSector,
                     "alive": newStatus
-            }})
+                }})
             .then((response) => response.json())
-    }, [])
+    }
     return(
-        <form onSubmit={Post}>
+        <form onSubmit={upd}>
             <label for="name">New Tribute Name</label>
             <input type="Text" id="name" onSubmit={()=> setNewName(this.target.value)}/>
             <label for="nationality">New Tributes nationality</label>
@@ -158,9 +158,6 @@ function Update(){
 
 }
 
-function Get(){
-
-}
 function Persons() {
     const [persons, setPersons] = useState([])
     useEffect(() => {
@@ -214,7 +211,6 @@ function App() {
                             <li className="App-li-nav"><Link to="/tributes" className="navlink">Delete</Link></li>
                             <li className="App-li-nav"><Link to="/teams" className="navlink">Update</Link></li>
                             <li className="App-li-nav"><Link to="/rankings" className="navlink">Add</Link></li>
-                            <li className="App-li-nav"><Link to="/contact" className="navlink">Get </Link></li>
                             <li className="App-li-nav">
                                 <label for="search">Search &ensp;</label>
                                 <input id="search" type="text" onChange={event => {
@@ -229,8 +225,7 @@ function App() {
                         <Route path="/" element={<Persons/>}/>
                         <Route path="/tributes" element={<Delete/>}/>
                         <Route path="/teams" element={<Update/>}/>
-                        <Route path="/rankings" element={<Get/>}/>
-                        <Route path="/contact" element={<Post/>}/>
+                        <Route path="/rankings" element={<Post/>}/>
                         <Route path="*" element={
                             <Alert variant={'danger'}>There's nothing here!</Alert>
                         }/>
